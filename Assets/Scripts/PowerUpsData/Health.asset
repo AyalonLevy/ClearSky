@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19e7c17c839edad409a450499f8f75b4, type: 3}
+  m_Name: Health
+  m_EditorClassIdentifier: Assembly-CSharp::PowerUpData
+  powerUpType: 3
+  powerUpSprite: {fileID: 5703126283325693286, guid: 0a13412c9399b7f4ba4f2391861b5143, type: 3}
+  visualEffect: {fileID: 3231093106102616798, guid: 8d33539992895c442a776ba56e543646, type: 3}
+  collectedSound: {fileID: 0}
+  statIncrease: 2
+  gravityScale: 2

@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19e7c17c839edad409a450499f8f75b4, type: 3}
+  m_Name: Power
+  m_EditorClassIdentifier: Assembly-CSharp::PowerUpData
+  powerUpType: 0
+  powerUpSprite: {fileID: 3211532551785615114, guid: 6b2cf6eb058f7304b979abbd6f4b20a7, type: 3}
+  visualEffect: {fileID: 2338218028910495922, guid: 93e2c1bf0319bbd4894e14a7b0815cf2, type: 3}
+  collectedSound: {fileID: 0}
+  statIncrease: 1
+  gravityScale: 2

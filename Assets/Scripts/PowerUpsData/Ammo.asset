@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19e7c17c839edad409a450499f8f75b4, type: 3}
+  m_Name: Ammo
+  m_EditorClassIdentifier: Assembly-CSharp::PowerUpData
+  powerUpType: 2
+  powerUpSprite: {fileID: 3608033846928549881, guid: 05327db610aee7049a3498779eb101c1, type: 3}
+  visualEffect: {fileID: 3067368113332121389, guid: e07fea500f942e84b9df4d615860ae16, type: 3}
+  collectedSound: {fileID: 0}
+  statIncrease: 3
+  gravityScale: 2

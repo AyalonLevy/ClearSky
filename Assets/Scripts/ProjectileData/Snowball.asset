@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b0b551986c2b864ba3245a9e3483935, type: 3}
+  m_Name: Snowball
+  m_EditorClassIdentifier: Assembly-CSharp::ProjectileData
+  projectileSprite: {fileID: 7607144487970100932, guid: aa2cf96e86501d24e920591280ebf5c0, type: 3}
+  explosionEffect: {fileID: 2338218028910495922, guid: 5c12263f1b43dbd448c309837d3d92dd, type: 3}
+  explosionSound: {fileID: 11400000, guid: 266191a849e6de14f904274aa57fc55b, type: 2}
+  projectileScale: 0.5
+  projectileRotation: 50
+  projectileSpeed: 50
+  speedMultiplier: 10
+  damage: 10
+  hasTail: 1
+  tailColor: {r: 1, g: 1, b: 1, a: 1}
+  trailSizeMultiplier: 1
