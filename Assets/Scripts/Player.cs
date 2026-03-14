@@ -237,7 +237,14 @@ public class Player : MonoBehaviour
                 GameManager.instance.UpdateReloadTime();
                 break;
             case PowerUpData.PowerUpsTypes.Ammo:
-                currentAmmo += data.statIncrease;
+                if (isReloading)
+                {
+                    ammo += data.statIncrease;
+                }
+                else
+                {
+                    currentAmmo += data.statIncrease;
+                }
                 if (currentAmmo > ammo)
                 {
                     ammo = Mathf.Min(currentAmmo, maxAmmo);

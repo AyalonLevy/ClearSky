@@ -113,7 +113,8 @@ public class Spawner : MonoBehaviour
         powerUp.transform.SetPositionAndRotation(spawnPosition, Quaternion.identity);
 
         // Set powerup and initialize it
-        PowerUpData selectedPowerUp = powerUpData[Random.Range(0, powerUpData.Length)];
+        PowerUpData selectedPowerUp = powerUpData[Random.Range(0, powerUpData.Length)];  // 0 - Health, 1 - Ammo, 2 - Power, 3 - Reload Time
+        selectedPowerUp = powerUpData[1];
         powerUp.Initialize(selectedPowerUp);
         powerUp.SetPool(powerUpPool);
 
