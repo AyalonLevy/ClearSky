@@ -18,6 +18,10 @@ This project allowed me to manage the full creative and technical pipeline:
 ## ✨ Why This Matters
 This project is about the challenge of mastering new tools—whether it’s refining a game loop or mixing a music track—to ensure that the final result is a cohesive, polished experience.
 
+<p align="center">
+  <img src="GamePlay.gif" alt="Clear Sky Gameplay">
+</p>
+
 ## 📜 Copyright
 Clear Sky is a personal labor of love.
 
