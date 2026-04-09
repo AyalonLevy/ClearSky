@@ -18,3 +18,4 @@ MonoBehaviour:
   collectedSound: {fileID: 0}
   statIncrease: 2
   gravityScale: 2
+  spawnWeight: 10

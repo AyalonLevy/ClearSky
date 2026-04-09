@@ -19,6 +19,7 @@ MonoBehaviour:
   health: 5
   minSize: 0.8
   maxSize: 2
+  spawnWeight: 20
   gravityScale: 1.6
   hasTail: 0
   tailGradient:

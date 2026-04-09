@@ -11,6 +11,10 @@ public class GameManager : MonoBehaviour
 
     public AudioEvent gameOverSound;
 
+    [Header("Level Settings")]
+    [SerializeField] private int pointsPerLevel = 10;
+    private int currentLevel = 1;
+
     private LevelLoader levelLoader;
     private int score = 0;
     private float elapsedTime = 0.0f;
@@ -50,6 +54,25 @@ public class GameManager : MonoBehaviour
     {
         score++;
         UIManager.instance.UpdateScore(score);
+
+        if (score > 0 && score % pointsPerLevel == 0)
+        {
+            LevelUp();
+        }
+    }
+
+    private void LevelUp()
+    {
+        currentLevel++;
+
+        // TODO: Notify UI and show LEVEL X message
+        UIManager.instance.ShowLevelMessage(currentLevel);
+
+        Spawner spawner = FindFirstObjectByType<Spawner>();
+        if (spawner != null)
+        {
+            spawner.IncreaseLevelDifficulty(currentLevel);
+        }
     }
 
     public void RefreshAllUI()

@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -12,6 +13,7 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI powerText;
     public TextMeshProUGUI reloadRateText;
     public TextMeshProUGUI timeSurvivedText;
+    public TextMeshProUGUI levelText;
     public GameObject pauseMenu;
     public GameObject gameOverMenu;
     public GameObject buttonControl;
@@ -24,6 +26,12 @@ public class UIManager : MonoBehaviour
 
     private readonly List<GameObject> ammoIcons = new();
     private readonly List<GameObject> healthIcons = new();
+
+    [Header("Level Up Animation")]
+    [SerializeField] private float startScale = 0.5f;
+    [SerializeField] private float targetScale = 1.0f;
+    [SerializeField] private float levelUpTextAppearanceTimer = 2.0f;
+    [SerializeField] private float levelUpTesxTimer = 0.5f;
 
 
     private void Awake()
@@ -110,5 +118,37 @@ public class UIManager : MonoBehaviour
         {
             buttonControl.SetActive(isActive);
         }
+    }
+
+    public void ShowLevelMessage(int level)
+    {
+        levelText.text = "LEVEL   " + level;
+        StartCoroutine(FadeLevelText());
+    }
+
+    private IEnumerator FadeLevelText()
+    {
+        levelText.gameObject.SetActive(true);
+
+        float elapsed = 0.0f;
+        Vector3 initialScale = Vector3.one * startScale;
+        Vector3 finalScale = Vector3.one * targetScale;
+
+        while (elapsed < levelUpTextAppearanceTimer)
+        {
+            elapsed += Time.deltaTime;
+            
+            float t = elapsed / levelUpTextAppearanceTimer;
+
+            levelText.transform.localScale = Vector3.Lerp(initialScale, finalScale, t);
+
+            levelText.alpha = t;
+
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(levelUpTesxTimer);
+
+        levelText.gameObject.SetActive(false);
     }
 }

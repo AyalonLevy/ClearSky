@@ -20,4 +20,5 @@ public class PowerUpData : ScriptableObject
     public int statIncrease = 1;
     public float gravityScale = 5.0f;
 
+    public float spawnWeight = 1.0f;
 }

@@ -28,6 +28,13 @@ public class Spawner : MonoBehaviour
 
     private readonly float spawnScreenOffset = 1.2f;
 
+    [Header("Difficulty Progression")]
+    [SerializeField] private float speedMultiplierPerLevel = 0.9f;  // 10% faster
+    [SerializeField] private float absoluteMinSpawnInterval = 0.4f;  //  to prevent thew spawn rate to be impossible for the player to play
+
+    private float initialMinInterval;
+    private float initialMaxInterval;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {
@@ -36,6 +43,9 @@ public class Spawner : MonoBehaviour
 
     private void Start()
     {
+        initialMinInterval = minSpawnInterval;
+        initialMaxInterval = maxSpawnInterval;
+
         nextSpawnTime = Time.time + GetRandomValue(minSpawnInterval, maxSpawnInterval);
         obstacleSpawnedCounter = 0;
     }
@@ -59,6 +69,14 @@ public class Spawner : MonoBehaviour
             SpawnPowerUp(GetSpawnPosition());
             obstacleSpawnedCounter = 0;
         }
+    }
+
+    public void IncreaseLevelDifficulty(int level)
+    {
+        float currentMultiplier = Mathf.Pow(speedMultiplierPerLevel, level - 1);
+
+        minSpawnInterval = Mathf.Max(initialMinInterval * currentMultiplier, absoluteMinSpawnInterval);
+        maxSpawnInterval = Mathf.Max(initialMaxInterval * currentMultiplier, absoluteMinSpawnInterval + 0.5f);
     }
 
     private void GetScreenInWorldCoordinates()
@@ -95,7 +113,7 @@ public class Spawner : MonoBehaviour
 
         // Set obstacle and initialize it
         //ObstacleData selectedObstacle = obstacleData[Random.Range(0, obstacleData.Length)];
-        ObstacleData selectedObstacle = GetWeightedRandomObstacle();
+        ObstacleData selectedObstacle = GetWeightedItem(obstacleData, x => x.spawnWeight);
         obstacle.Initialize(selectedObstacle);
         obstacle.SetPool(obstaclePool);
 
@@ -114,7 +132,7 @@ public class Spawner : MonoBehaviour
         powerUp.transform.SetPositionAndRotation(spawnPosition, Quaternion.identity);
 
         // Set powerup and initialize it
-        PowerUpData selectedPowerUp = powerUpData[Random.Range(0, powerUpData.Length)];  // 0 - Health, 1 - Ammo, 2 - Power, 3 - Reload Time
+        PowerUpData selectedPowerUp = GetWeightedItem(powerUpData, x => x.spawnWeight);
         powerUp.Initialize(selectedPowerUp);
         powerUp.SetPool(powerUpPool);
 
@@ -125,14 +143,14 @@ public class Spawner : MonoBehaviour
         difficultyScale += 1;
     }
 
-    private ObstacleData GetWeightedRandomObstacle()
+    private T GetWeightedItem<T>(T[] items, System.Func<T, float> weightSelector)
     {
         float totalWeight = 0.0f;
 
         // Calculate the sum of all weights
-        foreach (var data in obstacleData)
+        foreach (var item in items)
         {
-            totalWeight += data.spawnWeight;
+            totalWeight += weightSelector(item);
         }
 
         // Pick a random number between 0 and the total weight
@@ -140,16 +158,16 @@ public class Spawner : MonoBehaviour
 
         // Iterate through again to find which "bracket" the random value fell into
         float cumulativeWeight = 0.0f;
-        foreach (var data in obstacleData)
+        foreach (var item in items)
         {
-            cumulativeWeight += data.spawnWeight;
+            cumulativeWeight += weightSelector(item);
             if (randomValue <= cumulativeWeight)
             {
-                return data;
+                return item;
             }
         }
 
         // Fall back
-        return obstacleData[0];
+        return items[0];
     }
 }
