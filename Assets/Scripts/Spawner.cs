@@ -94,7 +94,8 @@ public class Spawner : MonoBehaviour
         obstacle.transform.SetPositionAndRotation(spawnPosition, Quaternion.identity);
 
         // Set obstacle and initialize it
-        ObstacleData selectedObstacle = obstacleData[Random.Range(0, obstacleData.Length)];
+        //ObstacleData selectedObstacle = obstacleData[Random.Range(0, obstacleData.Length)];
+        ObstacleData selectedObstacle = GetWeightedRandomObstacle();
         obstacle.Initialize(selectedObstacle);
         obstacle.SetPool(obstaclePool);
 
@@ -114,7 +115,6 @@ public class Spawner : MonoBehaviour
 
         // Set powerup and initialize it
         PowerUpData selectedPowerUp = powerUpData[Random.Range(0, powerUpData.Length)];  // 0 - Health, 1 - Ammo, 2 - Power, 3 - Reload Time
-        selectedPowerUp = powerUpData[1];
         powerUp.Initialize(selectedPowerUp);
         powerUp.SetPool(powerUpPool);
 
@@ -123,5 +123,33 @@ public class Spawner : MonoBehaviour
         
         // Increase the difficulty everytime a power up is spawned
         difficultyScale += 1;
+    }
+
+    private ObstacleData GetWeightedRandomObstacle()
+    {
+        float totalWeight = 0.0f;
+
+        // Calculate the sum of all weights
+        foreach (var data in obstacleData)
+        {
+            totalWeight += data.spawnWeight;
+        }
+
+        // Pick a random number between 0 and the total weight
+        float randomValue = Random.Range(0, totalWeight);
+
+        // Iterate through again to find which "bracket" the random value fell into
+        float cumulativeWeight = 0.0f;
+        foreach (var data in obstacleData)
+        {
+            cumulativeWeight += data.spawnWeight;
+            if (randomValue <= cumulativeWeight)
+            {
+                return data;
+            }
+        }
+
+        // Fall back
+        return obstacleData[0];
     }
 }

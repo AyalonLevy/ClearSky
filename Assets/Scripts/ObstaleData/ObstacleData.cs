@@ -11,6 +11,7 @@ public class ObstacleData : ScriptableObject
     public float health;
     public float minSize = 0.3f;
     public float maxSize = 1.5f;
+    public float spawnWeight = 1.0f;
 
     [Tooltip("Gravity effect multiplier")]
     public float gravityScale;

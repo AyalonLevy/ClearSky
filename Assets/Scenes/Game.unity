@@ -6389,6 +6389,8 @@ MonoBehaviour:
   obstaclePool: {fileID: 710304596}
   obstacleData:
   - {fileID: 11400000, guid: 8951eeb7e4142704c8ce26c15353b676, type: 2}
+  - {fileID: 11400000, guid: 8b18223dac882e3498a757e01c0ed1fa, type: 2}
+  - {fileID: 11400000, guid: e2fe99a256f0fda44b48930cc36dd9ee, type: 2}
   powerUpPool: {fileID: 1582947246}
   powerUpData:
   - {fileID: 11400000, guid: 19577494b81712443bb429ff45d77f38, type: 2}
