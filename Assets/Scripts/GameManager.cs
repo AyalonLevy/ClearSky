@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     [HideInInspector] public bool isPaused = false;
+    [HideInInspector] public bool useButtonControl = false;
 
     public static GameManager instance;
     [SerializeField] private Player player;
@@ -41,6 +42,8 @@ public class GameManager : MonoBehaviour
         }
 
         levelLoader = FindAnyObjectByType<LevelLoader>();
+        useButtonControl = PlayerPrefs.GetInt("UseButtonControls", 0) == 1;
+        UIManager.instance.ToggleActionButton(useButtonControl);
     }
 
     public void AddScore()

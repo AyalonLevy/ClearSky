@@ -14,6 +14,7 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI timeSurvivedText;
     public GameObject pauseMenu;
     public GameObject gameOverMenu;
+    public GameObject buttonControl;
 
     [Header("Icon Groups")]
     public HorizontalLayoutGroup ammoGroup;
@@ -101,5 +102,13 @@ public class UIManager : MonoBehaviour
     public void TogglePauseMenu(bool isDisplayed)
     {
         pauseMenu.SetActive(isDisplayed);
+    }
+
+    public void ToggleActionButton(bool isActive)
+    {
+        if (buttonControl != null)
+        {
+            buttonControl.SetActive(isActive);
+        }
     }
 }

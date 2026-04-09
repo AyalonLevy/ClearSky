@@ -43,7 +43,6 @@ public class TouchManager : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log("Inpout manager");
         GameObject spawner = GameObject.Find("Spawner");
         screenBoundaries.x = spawner.GetComponent<Spawner>().screenWidth;
         screenBoundaries.y = spawner.GetComponent<Spawner>().screenHeight;
@@ -55,20 +54,16 @@ public class TouchManager : MonoBehaviour
         {
             return;
         }
-        Debug.Log("Enhance Touched check:");
         foreach (EnhancedTouch.Touch touch in EnhancedTouch.Touch.activeTouches)
         {
-            Debug.Log("In foreach");
             if (touch.phase == TouchPhase.Began)
             {
-                Debug.Log("Touch began");
                 touchStartTime = Time.time;
                 isProtentialTap = true;
             }
 
             if (touch.inProgress)
             {
-                Debug.Log("Touch in progress");
                 if (Time.time - touchStartTime > tapTimeThreshold)
                 {
                     isProtentialTap = false;
@@ -78,7 +73,7 @@ public class TouchManager : MonoBehaviour
 
             if (touch.phase == TouchPhase.Ended)
             {
-                if (isProtentialTap)
+                if (isProtentialTap && !GameManager.instance.useButtonControl)
                 {
                     PerformAction();
                 }
@@ -88,7 +83,6 @@ public class TouchManager : MonoBehaviour
 
     private void FollowTouch(EnhancedTouch.Touch touch)
     {
-        Debug.Log("Follow Touch");
         moveCoroutine ??= StartCoroutine(MoveToTarget(touch));
     }
 
